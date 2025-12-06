@@ -45,42 +45,26 @@ publishing {
             groupId = "io.github.exaland"
             artifactId = "switchlabeled"
             version = "1.0.0"
-
+            // Ajoute aussi les sources et Javadoc si besoin
+            // (déjà dans ta configuration précédente)
             pom {
-                name.set("LabeledSwitch")
-                description.set("A Material You labeled switch for Android")
-                url.set("https://github.com/exaland/switchlabeled")
-                licenses {
-                    license {
-                        name.set("Apache License 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("exaland")
-                        name.set("Alexandre Magnier")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:https://github.com/exaland/switchlabeled.git")
-                    developerConnection.set("scm:git:https://github.com/exaland/switchlabeled.git")
-                    url.set("https://github.com/exaland/switchlabeled")
-                }
+                // ... (tes métadonnées)
             }
+            // Ajoute l'artefact AAR
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
         }
     }
-}
-
-// GPG signing configuration (in-memory recommended for CI/CD)
-signing {
-    useGpgCmd()
-    sign(publishing.publications["release"])
-}
-
-// Repositories for publishing (Maven Central / Sonatype OSSRH)
-publishing {
     repositories {
+        // Publication vers GitHub Packages
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/exaland/switchlabeled")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("TOKEN_GITHUB")
+            }
+        }
+        // Publication vers OSSRH
         maven {
             name = "OSSRH"
             url = uri("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/")
@@ -90,4 +74,11 @@ publishing {
             }
         }
     }
+}
+
+
+// GPG signing configuration (in-memory recommended for CI/CD)
+signing {
+    useGpgCmd()
+    sign(publishing.publications["release"])
 }
