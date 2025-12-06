@@ -15,7 +15,8 @@ _A fully customizable, Material You-ready, animated labeled switch for Android._
 - ✔ No duplicate events (listener debouncing)
 - ✔ Lightweight — zero dependencies (optional Material3)
 
----
+---<img width="480" height="800" alt="LabeledSwitch" src="https://github.com/user-attachments/assets/2dd61c63-5d8f-4687-80d1-58fb5a2ffc5f" />
+
 
 ## 🚀 Installation
 
