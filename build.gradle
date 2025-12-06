@@ -4,6 +4,11 @@ plugins {
     id 'signing'
 }
 
+repositories {
+    google()
+    mavenCentral()
+}
+
 android {
     namespace 'io.github.exaland.switchlabeled'
     compileSdk 34
