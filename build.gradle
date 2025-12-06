@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
+    id 'signing'
 }
 
 android {
     namespace 'com.exalandwitchlabeled'
-    compileSdk {
-        version = release(34)
-    }
+    compileSdk 34
 
     defaultConfig {
         minSdk 23
@@ -21,9 +21,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 }
 
@@ -33,4 +41,49 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "io.github.exaland"                 // ← groupId Maven Central
+            artifactId = "switchlabeled"                   // ← nom de ta lib
+            version = "1.0.0"
+
+            afterEvaluate {
+                from components.release
+            }
+
+            pom {
+                name = "LabeledSwitch"
+                description = "A Material You labeled switch for Android"
+                url = "https://github.com/exaland/switchlabeled"
+
+                licenses {
+                    license {
+                        name = "Apache License 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "exaland"
+                        name = "Alexandre Magnier"
+                        email = "exaland@gmailcom"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:https://github.com/exaland/switchlabeled.git"
+                    developerConnection = "scm:git:https://github.com/exaland/switchlabeled.git"
+                    url = "https://github.com/exaland/switchlabeled"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.release
 }
