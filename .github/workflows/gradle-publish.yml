@@ -35,6 +35,12 @@ jobs:
     - name: Gradle Wrapper
       run: gradle wrapper
 
+    - name: Import GPG key
+      run: |
+        echo "$GPG_PRIVATE_KEY" | gpg --import
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
     - name: Build with Gradle
       run: ./gradlew build
 
