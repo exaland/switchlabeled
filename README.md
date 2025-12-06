@@ -2,7 +2,7 @@
 _A fully customizable, Material You-ready, animated labeled switch for Android._
 
 ![demo](preview.gif)
-
+[![Gradle Package](https://github.com/exaland/switchlabeled/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/exaland/switchlabeled/actions/workflows/gradle-publish.yml)
 ---
 
 ## ✨ Features
