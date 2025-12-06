@@ -80,7 +80,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/exaland/switchlabeled")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                password = System.getenv("TOKEN_GITHUB")
             }
         }
         // OSSRH
