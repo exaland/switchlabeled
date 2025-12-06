@@ -38,7 +38,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
 }
-
 publishing {
     publications {
         create("release", MavenPublication) {
@@ -67,6 +66,30 @@ publishing {
                     developerConnection.set("scm:git:https://github.com/exaland/switchlabeled.git")
                     url.set("https://github.com/exaland/switchlabeled")
                 }
+            }
+        }
+    }
+}
+
+// Repositories for publishing
+publishing {
+    repositories {
+        // GitHub Packages
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/exaland/switchlabeled")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        // OSSRH
+        maven {
+            name = "OSSRH"
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = project.findProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
+                password = project.findProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
             }
         }
     }
