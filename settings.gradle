@@ -6,12 +6,6 @@ pluginManagement {
     }
 
 
-dependencies {
-    // Ensure all dependencies specify compatible versions
-    implementation 'androidx.annotation:annotation:1.7.0'
-    implementation 'com.google.android.material:material:1.13.0'
-    // Add other missing or required libraries here
-}
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "com.android.application" || requested.id.id == "com.android.library") {
