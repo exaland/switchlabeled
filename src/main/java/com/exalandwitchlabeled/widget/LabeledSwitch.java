@@ -32,8 +32,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.core.content.ContextCompat;
 
-import com.exalandwitchlabeled.R;
 import com.exalandwitchlabeled.models.ToggleableView;
+
+import io.github.exaland.switchlabeled.R;
 
 
 /**

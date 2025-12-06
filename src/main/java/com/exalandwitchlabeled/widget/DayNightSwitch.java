@@ -28,8 +28,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.exalandwitchlabeled.R;
 import com.exalandwitchlabeled.models.ToggleableView;
+
+import io.github.exaland.switchlabeled.R;
 
 
 /**
